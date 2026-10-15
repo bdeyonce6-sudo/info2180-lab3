@@ -60,19 +60,27 @@ document.addEventListener("DOMContentLoaded", function () {
         square.classList.add("square");
 
         square.addEventListener("click", function () {
-            if (gameBoard[index] === "" && !gameOver) {
-                square.textContent = currentPlayer;
-                square.classList.add(currentPlayer);
+            // Do not allow moves after game has ended
+            if (gameOver) {
+                return;
+            }
 
-                gameBoard[index] = currentPlayer;
+            //Do not allow an occupied square to be changed
+            if (gameBoard[index] !== "") {
+                return;
+            }
+            
+            square.textContent = currentPlayer;
+            square.classList.add(currentPlayer);
 
-                checkWinner();
+            gameBoard[index] = currentPlayer;
 
-                if (currentPlayer === "X") {
-                    currentPlayer = "0";
-                } else {
-                    currentPlayer = "X";
-                }
+            checkWinner();
+
+            if (currentPlayer === "X") {
+                currentPlayer = "0";
+            } else {
+                currentPlayer = "X";
             }
         });
 
