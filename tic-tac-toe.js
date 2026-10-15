@@ -38,6 +38,24 @@ document.addEventListener("DOMContentLoaded", function () {
         [2, 4, 6],
     ];
 
+    const newGameButton = document.querySelector(".btn");
+    const originalStatus = status.textContent;
+
+    newGameButton.addEventListener("click", function () {
+        gameBoard = ["", "", "", "", "", "", "", "", ""];
+
+        currentPlayer = "X";
+        gameOver = false;
+
+        sqaures.forEach(function (square) {
+            square.textContent = "";
+            square.classList.remove("X", "O", "hover");
+        });
+
+        status.textContent = originalStatus;
+        status.classList.remove("you-won");
+    });
+
     sqaures.forEach(function (square, index) {
         square.classList.add("square");
 
